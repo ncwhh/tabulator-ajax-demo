@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "author": "ncwhh <45795211+ncwhh@users.noreply.github.com>",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js ."
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "pg": "^8.11.3"
+  }
+}
