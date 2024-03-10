@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Tabulator Postgres Demo</title>
 </head>
-<body>
-<div style="display: flex; flex-direction: row">
+<body style="max-width: 1000px; margin-left: auto; margin-right: auto; margin-top: 25px">
+<div style="display: flex; flex-direction: row; margin-bottom: 10px">
     <label>
         Start Date:
         <input type="date" id="from_date" value="2024-01-10">
     </label>
-    <label style="flex-grow: 1">
+    <label style="flex-grow: 1; margin-left: 5px">
         End Date:
         <input type="date" id="until_date" value="2024-01-15">
     </label>
-    <button id="update"><i class="ti ti-refresh"></i> Update Table</button>
-    <button id="download"><i class="ti ti-download"></i> Download</button>
+    <button id="update" style="margin-right: 5px"><i class="ti ti-refresh"></i> Update Table</button>
+    <button id="download" style="margin-right: 5px"><i class="ti ti-download"></i> Download</button>
     <div class="dropdown">
         <button><i class="ti ti-columns"></i></button>
         <div class="dropdown-content">

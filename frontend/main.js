@@ -58,6 +58,15 @@ function localInt(cell, formatterParams, onRendered) {
     return Number(cell.getValue()).toLocaleString();
 }
 
+Tabulator.extendModule("accessor", "accessors", {
+    decimal:function(value, data, accessorParams){
+        return Number(value)
+        .toLocaleString(undefined, {
+            minimumFractionDigits: 2
+        });
+    }
+});
+
 // Define columns
 var columns = [
     {
@@ -77,56 +86,88 @@ var columns = [
     },
     {
         title: "Impressions",
-        field: "impressions",
-        hozAlign: "right",
-        formatter: localInt,
-        description: "How many times the product was shown in search results"
-    },
-    {
-        title: "Impressions Trend",
-        field: "impressions_change",
-        formatter: localPercentWithArrow,
-        description: "How many times the product was shown in search results compared to the previous period in percentage"
+        columns: [
+            {
+                title: "Sum",
+                titleDownload: "Impressions",
+                field: "impressions",
+                hozAlign: "right",
+                formatter: localInt,
+                description: "How many times the product was shown in search results"
+            },
+            {
+                title: "Trend",
+                titleDownload: "Impressions Trend",
+                field: "impressions_change",
+                formatter: localPercentWithArrow,
+                accessor: "decimal",
+                description: "How many times the product was shown in search results compared to the previous period in percentage"
+            },
+        ],
     },
     {
         title: "Clicks",
-        field: "clicks",
-        hozAlign: "right",
-        formatter: localInt,
-        description: "How many times the product was clicked"
+        columns: [
+            {
+                title: "Sum",
+                titleDownload: "Clicks",
+                field: "clicks",
+                hozAlign: "right",
+                formatter: localInt,
+                description: "How many times the product was clicked"
+            },
+            {
+                title: "Trend",
+                titleDownload: "Clicks Trend",
+                field: "clicks_change",
+                formatter: localPercentWithArrow,
+                accessor: "decimal",
+                description: "How many times the product was clicked compared to the previous period in percentage"
+            },
+        ]
     },
     {
-        title: "Clicks Trend",
-        field: "clicks_change",
-        formatter: localPercentWithArrow,
-        description: "How many times the product was clicked compared to the previous period in percentage"
-    },
-    {
-        title: "Add to carts",
-        field: "add_to_cart",
-        hozAlign: "right",
-        formatter: localInt,
-        description: "How many times the product was added to cart"
-    },
-    {
-        title: "Add to carts Trend",
-        field: "add_to_cart_change",
-        formatter: localPercentWithArrow,
-        description: "How many times the product was added to cart compared to the previous period in percentage"
+        title: "Add to Carts",
+        columns: [
+            {
+                title: "Sum",
+                titleDownload: "Add to Carts",
+                field: "add_to_cart",
+                hozAlign: "right",
+                formatter: localInt,
+                description: "How many times the product was added to cart"
+            },
+            {
+                title: "Trend",
+                titleDownload: "Add to Carts Trend",
+                field: "add_to_cart_change",
+                formatter: localPercentWithArrow,
+                accessor: "decimal",
+                description: "How many times the product was added to cart compared to the previous period in percentage"
+            },
+        ]
     },
     {
         title: "Purchases",
-        field: "purchases",
-        hozAlign: "right",
-        formatter: localInt,
-        description: "How many times the product was purchased"
+        columns: [
+            {
+                title: "Sum",
+                titleDownload: "Purchases",
+                field: "purchases",
+                hozAlign: "right",
+                formatter: localInt,
+                description: "How many times the product was purchased"
+            },
+            {
+                title: "Trend",
+                titleDownload: "Purchases Trend",
+                field: "purchases_change",
+                formatter: localPercentWithArrow,
+                accessor: "decimal",
+                description: "How many times the product was purchased compared to the previous period in percentage"
+            }
+        ]
     },
-    {
-        title: "Purchases Trend",
-        field: "purchases_change",
-        formatter: localPercentWithArrow,
-        description: "How many times the product was purchased compared to the previous period in percentage"
-    }
 ]
 
 
@@ -155,7 +196,7 @@ var tabulator_table = new Tabulator("#example-table", {
     paginationSizeSelector: [5, 10, 25, 50, 100, 1000],
     paginationCounter: "rows",
 
-    height: 339,
+    height: 439,
     layout: "fitColumns",
 
     columns: columns,
@@ -172,20 +213,22 @@ var tabulator_table = new Tabulator("#example-table", {
 var columns_toggler = document.getElementById("columns_toggler");
 columns_toggler.replaceChildren(
     ...columns.map(column => {
-        var span = document.createElement("span");
+        let elements = column.columns ? column.columns : [column]
 
-        var input = document.createElement("input");
-        input.setAttribute("id", column.field)
+        let span = document.createElement("span");
+        let input = document.createElement("input");
+        input.setAttribute("id", column.title)
         input.setAttribute("type", "checkbox")
         input.setAttribute("name", column.title)
-        input.setAttribute("value", column.field)
         input.checked = true
         input.addEventListener("change", function () {
-            tabulator_table.toggleColumn(this.value)
+            for (let element of elements) {
+                tabulator_table.toggleColumn(element.field)
+            }
         })
 
 
-        var label = document.createElement("label");
+        let label = document.createElement("label");
         label.textContent = column.title
         label.setAttribute("for", column.field)
 
