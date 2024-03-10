@@ -1,6 +1,8 @@
-# Interactive Data Analytics Web App with Tabulator and PostgreSQL
+# Data Analytics Web App Demo
 
 This project demonstrates building interactive data analytics web apps with [Tabulator](https://github.com/olifolkerd/tabulator), a powerful JavaScript library for creating tabular interfaces. It showcases connecting Tabulator to a [PostgreSQL](https://github.com/postgres/postgres) database for displaying large datasets with features like pagination, sorting, and filtering handled efficiently by the database.
+
+![Demo Screenshot](screenshot.png)
 
 ## Getting Started
 ### Prerequisites:
