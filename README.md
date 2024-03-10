@@ -1,6 +1,6 @@
 # Data Analytics Web App Demo
 
-This project demonstrates building interactive data analytics web apps with [Tabulator](https://github.com/olifolkerd/tabulator), a powerful JavaScript library for creating tabular interfaces. It showcases connecting Tabulator to a [PostgreSQL](https://github.com/postgres/postgres) database for displaying large datasets with features like pagination, sorting, and filtering handled efficiently by the database.
+This project demonstrates a interactive data analytics web app build with [Tabulator](https://github.com/olifolkerd/tabulator), a powerful JavaScript library for creating tabular interfaces. It showcases connecting Tabulator to a [PostgreSQL](https://github.com/postgres/postgres) database for displaying large datasets with features like pagination, sorting, and filtering handled efficiently by the database.
 
 ![Demo Screenshot](screenshot.png)
 
@@ -15,15 +15,15 @@ This project demonstrates building interactive data analytics web apps with [Tab
 
 ```bash
 cd database
-bash build.sh # build the docker image
-bash run.sh   # run the docker container
+bash build.sh # build docker image
+bash run.sh   # run docker container
 ```
 
 **2. Backend**
 
 ```bash
 cd backend
-npm install # install the dependencies
+npm install # install dependencies
 npm run dev # start development server
 ```
 
@@ -31,12 +31,12 @@ npm run dev # start development server
 
 ```bash
 cd frontend
-npm install # install the dependencies
-npm run dev # start the development server
+npm install # install dependencies
+npm run dev # start development server
 ```
 
 ## Data
-The demo uses dummy data generated with [Faker.js](https://github.com/faker-js/faker) to represent a webshop's [conversion funnel](https://en.wikipedia.org/wiki/Purchase_funnel).
+The web app shows dummy data generated with [Faker.js](https://github.com/faker-js/faker) to represent a webshop's [conversion funnel](https://en.wikipedia.org/wiki/Purchase_funnel).
 
 ## Security
 This is a demonstration project, and security best practices are not fully implemented. However, to mitigate potential SQL injection vulnerabilities, basic Ajax parameter validation with regular expressions is included.
