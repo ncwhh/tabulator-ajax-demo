@@ -12,5 +12,3 @@ ENV POSTGRES_HOST_AUTH_METHOD=trust
 
 COPY --from=build /app/dummy_data.csv /tmp/
 COPY init.sql /docker-entrypoint-initdb.d/
-
-EXPOSE 5432
